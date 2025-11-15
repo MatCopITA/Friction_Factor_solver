@@ -5,9 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{41C53B04-6B89-C90F-FE9D-61C6138EF320}|Colebrook_solver\\Colebrook_solver.csproj|c:\\users\\mcope\\source\\repos\\colebrook_solver\\colebrook_solver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41C53B04-6B89-C90F-FE9D-61C6138EF320}|Colebrook_solver\\Colebrook_solver.csproj|solutionrelative:colebrook_solver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mcope\\Desktop\\some stuff\\Visual Sudio\\programs\\C#\\ConsoleScientificCalculator-main\\select1NET\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,19 +43,6 @@
               "ViewState": "AgIAACIAAAAAAAAAAAAowC0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T17:56:13.472Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\mcope\\Desktop\\some stuff\\Visual Sudio\\programs\\C#\\ConsoleScientificCalculator-main\\select1NET\\Program.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\Desktop\\some stuff\\Visual Sudio\\programs\\C#\\ConsoleScientificCalculator-main\\select1NET\\Program.cs",
-              "ToolTip": "C:\\Users\\mcope\\Desktop\\some stuff\\Visual Sudio\\programs\\C#\\ConsoleScientificCalculator-main\\select1NET\\Program.cs",
-              "RelativeToolTip": "..\\..\\..\\Desktop\\some stuff\\Visual Sudio\\programs\\C#\\ConsoleScientificCalculator-main\\select1NET\\Program.cs",
-              "ViewState": "AgIAAJgBAAAAAAAAAAAAALMBAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T09:12:35.438Z",
               "EditorCaption": ""
             }
           ]
