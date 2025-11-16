@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Colebrook_solver")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+782de4c23acbd35b3602eed0f6d5e634e2b753dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e87a04e29f7ae09bf28518b96ed3ecf7d2e71f7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Colebrook_solver")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Colebrook_solver")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

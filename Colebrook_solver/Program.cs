@@ -13,11 +13,14 @@ class Program
     Console.WriteLine("Enter the fluid velocity (m/s) (if not given leave blank): ");
     string? v_str = Console.ReadLine(); // Velocity in m/s
 
+    //if velocity is not given, set to 0
     if (String.IsNullOrEmpty(v_str))
     {
       v_str = "0";
-      Console.WriteLine("You need to specify after the volumetric flow (m^3/s)");
+      Console.WriteLine("You need to specify after the volumetric flow rate (m^3/s), press any key to continue...");
+      Console.ReadKey();
     }
+    Console.WriteLine($"{Environment.NewLine}");
 
     Console.WriteLine("Enter the pipe diameter (m): ");
     string? D_str = Console.ReadLine(); // Diameter in meters
@@ -65,7 +68,7 @@ class Program
       string? Q_str = Console.ReadLine(); // Volumetric flow rate in m^3/s
       if (Q_str == null)
       {
-        Console.WriteLine("Invalid input. Please provide the volumetric flow rate.");
+        Console.WriteLine("Invalid input. Please provide a valid volumetric flow rate.");
         return;
       }
       double Q = Convert.ToDouble(Q_str);
@@ -165,7 +168,7 @@ class Program
       }
     }
 
-    Console.WriteLine($"{Environment.NewLine}Press any key to reset");
+    Console.WriteLine($"{Environment.NewLine}Press any key to continue...");
     Console.ReadKey();
     Main(args);
   }
