@@ -44,10 +44,11 @@ class Program
     Console.WriteLine("Enter the Length (m) (or leave blank if not required): ");
     string? L_str = Console.ReadLine(); // Length in meters
 
+    // empty input validation
     if (String.IsNullOrEmpty(D_str) || String.IsNullOrEmpty(rho_str) || String.IsNullOrEmpty(mu_str))
     {
       Console.WriteLine("Invalid input. Please provide all required values.");
-      return;
+      Main(args);
     }
 
     if (String.IsNullOrEmpty(L_str))
@@ -77,10 +78,13 @@ class Program
       Console.WriteLine($"{Environment.NewLine}Calculated fluid velocity 'v': " + v + " m/s");
     }
 
-   
+
     double Re = (rho * v * D) / mu; // Reynolds number
     double p_drop; // Pressure drop
     double Pow; // Power
+    double f; // Friction factor
+    double F_drv; //drive force
+    double l_v; //friction losses
 
     Console.WriteLine();
     Console.WriteLine($"{Environment.NewLine}Reynolds number 'Re': " + Re);
@@ -89,58 +93,21 @@ class Program
     {
       if (Re < 2100)
       {
-        Console.WriteLine("Friction Factor 'f(Re)' (Laminar, Smooth Pipe): " + (16 / Re));
-
-        if (L != 0)
-        {
-          p_drop = (2 * rho * Math.Pow(v, 2) * L) / (D) * (16 / Re);
-          Console.WriteLine($"{Environment.NewLine}Pressure Drop '|delta(p)|': " + p_drop + " Pa");
-
-          Pow = p_drop * ((Math.PI * Math.Pow(D, 2)) / 4) * v;
-          Console.WriteLine($"{Environment.NewLine}Power 'P': " + Pow + " W");
-        }
-        else
-        {
-          Console.WriteLine("Length 'L' must be greater than 0 to calculate pressure drop.");
-        }
+        f = 16 / Re;
+        Console.WriteLine("Friction Factor 'f(Re)' (Laminar, Smooth Pipe): " + (f));
       }
       else
       {
-        Console.WriteLine("Friction Factor 'f(Re)' (Turbulent, Smooth Pipe): " + (0.079 * Math.Pow(Re, -0.25))); //Blasius formula
-
-        if (L != 0)
-        {
-          p_drop = (2 * rho * Math.Pow(v, 2) * L) / (D) * (0.079 * Math.Pow(Re, -0.25));
-          Console.WriteLine($"{Environment.NewLine}Pressure Drop '|delta(p)|': " + p_drop + " Pa");
-
-          Pow = p_drop * ((Math.PI * Math.Pow(D, 2)) / 4) * v;
-          Console.WriteLine($"{Environment.NewLine}Power 'P': " + Pow + " W");
-        }
-        else
-        {
-          Console.WriteLine("Length 'L' must be greater than 0 to calculate pressure drop.");
-
-        }
+        f = 0.079 * Math.Pow(Re, -0.25);
+        Console.WriteLine("Friction Factor 'f(Re)' (Turbulent, Smooth Pipe): " + (f)); //Blasius formula
       }
     }
     else
     {
       if (Re < 2100)
       {
-        Console.WriteLine("Friction Factor 'f(Re, K)' (Laminar, Rough Pipe): " + (16 / Re));
-
-        if (L != 0)
-        {
-          p_drop = (2 * rho * Math.Pow(v, 2) * L) / (D) * (16 / Re);
-          Console.WriteLine($"{Environment.NewLine}Pressure Drop '|delta(p)|': " + p_drop + " Pa");
-
-          Pow = p_drop * ((Math.PI * Math.Pow(D, 2)) / 4) * v;
-          Console.WriteLine($"{Environment.NewLine}Power 'P': " + Pow + " W");
-        }
-        else
-        {
-          Console.WriteLine("Length 'L' must be greater than 0 to calculate pressure drop.");
-        }
+        f = 16 / Re;
+        Console.WriteLine("Friction Factor 'f(Re, K)' (Laminar, Rough Pipe): " + (f));
       }
       else
       {
@@ -164,24 +131,34 @@ class Program
           return f_local;
         }
 
-        double f = FindColebrook();
+        f = FindColebrook();
         Console.WriteLine("Friction Factor 'f(Re, K)' (Turbulent, Rough Pipe): " + f);
-
-        if (L != 0)
-        {
-          p_drop = (2 * rho * Math.Pow(v, 2) * L) / (D) * (f);
-          Console.WriteLine($"{Environment.NewLine}Pressure Drop '|delta(p)|': " + p_drop + " Pa");
-
-          Pow = p_drop * ((Math.PI * Math.Pow(D, 2)) / 4) * v;
-          Console.WriteLine($"{Environment.NewLine}Power 'P': " + Pow + " W");
-        }
-        else
-        {
-          Console.WriteLine("Length 'L' must be greater than 0 to calculate pressure drop.");
-        }
       }
     }
 
+    // Calculate pressure drop and power used
+    if (L != 0)
+    {
+      p_drop = (2 * rho * Math.Pow(v, 2) * L) / (D) * (f);
+      Console.WriteLine($"{Environment.NewLine}Pressure Drop '|delta(p)|': " + p_drop + " Pa");
+
+      Pow = p_drop * ((Math.PI * Math.Pow(D, 2)) / 4) * v;
+      Console.WriteLine($"{Environment.NewLine}Power used 'P': " + Pow + " W");
+    }
+    else
+    {
+      Console.WriteLine("Length 'L' must be greater than 0 to calculate pressure drop.");
+    }
+
+    // Calculate drive force
+    F_drv = (Math.PI * Math.Pow(D, 2) / 4) * rho * v;
+    Console.WriteLine($"{Environment.NewLine}Drive Force 'F_drv': " + F_drv + " N");
+
+    // Calculate friction losses
+    l_v = f * (L / D) * (Math.Pow(v, 2) / (2 * 9.81));
+    Console.WriteLine($"{Environment.NewLine}Friction Losses 'l_v': " + l_v + " m");
+
+    // Prompt to continue or exit
     Console.WriteLine($"{Environment.NewLine}Press any key to continue or press [Esc] to exit...");
     if (Console.ReadKey().Key == ConsoleKey.Escape)
     {
