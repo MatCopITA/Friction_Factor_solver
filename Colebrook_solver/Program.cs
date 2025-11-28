@@ -78,6 +78,7 @@ class Program
       Console.WriteLine($"{Environment.NewLine}Calculated fluid velocity 'v': " + v + " m/s");
     }
 
+    K = K * Math.Pow(10, -6); // Convert roughness from μm to m
 
     double Re = (rho * v * D) / mu; // Reynolds number
     double p_drop; // Pressure drop
@@ -122,7 +123,7 @@ class Program
           {
             f_old = f_local;
 
-            f_local = 1.0 / Math.Pow(-1.7 * Math.Log(((K * Math.Pow(10, -6)) / D) + (4.67 / (Re * Math.Sqrt(f_local))) + 2.28), 2); //Colebrook formula
+            f_local = 1.0 / Math.Pow(-1.7 * Math.Log((K / D) + (4.67 / (Re * Math.Sqrt(f_local))) + 2.28), 2); //Colebrook formula
 
             if (f_local <= 0) throw new InvalidOperationException("Non-physical friction factor computed.");
 
